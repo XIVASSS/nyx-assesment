@@ -1,0 +1,752 @@
+@import "tailwindcss";
+
+/* Fold design tokens — https://fold.money */
+@theme {
+  --color-canvas-white: #ffffff;
+  --color-whisper-gray: #f0f1f5;
+  --color-ash-gray: #c7cbdb;
+  --color-graphite: #dddfe9;
+  --color-midnight-ink: #20294c;
+  --color-deep-violet: #375390;
+  --color-active-blue: #459af8;
+  --color-muted-slate: #676b89;
+  --color-soft-stone: #979db5;
+  --color-ocean-tint: #0a2d67;
+  --color-pale-violet-border: #788dba;
+  --color-gold-highlight: #ffff00;
+
+  --font-gt-walsheim-pro: 'GT Walsheim Pro', ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-gt-america: 'GT America', Inter, ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+}
+
+:root {
+  /* Typography scale */
+  --text-caption: 10px;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.04em;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: 0.025em;
+  --text-body: 16px;
+  --leading-body: 1.5;
+  --tracking-body: 0.025em;
+  --text-subheading: 18px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.03em;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.03em;
+  --text-heading: 32px;
+  --leading-heading: 1.19;
+  --tracking-heading: -0.04em;
+  --text-heading-lg: 64px;
+  --leading-heading-lg: 0.91;
+  --tracking-heading-lg: -0.125em;
+  --text-display: 100px;
+  --leading-display: 0.85;
+  --tracking-display: -0.125em;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --section-gap: 48px;
+  --card-padding: 16px;
+  --element-gap: 8px;
+
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-2xl-2: 20px;
+  --radius-3xl: 24px;
+  --radius-cards: 12px;
+  --radius-images: 8px;
+  --radius-buttons: 9999px;
+  --radius-navigation: 24px;
+
+  --shadow-xl: rgba(32, 41, 76, 0.12) 0px 9px 25px 0px;
+  --shadow-md: rgba(32, 41, 76, 0.12) 0px 6px 16px 0px,
+    rgba(32, 41, 76, 0.09) 0px 1px 5px 0px;
+  --shadow-md-2: rgba(32, 41, 76, 0.07) 0px 4px 11px 0px,
+    rgba(32, 41, 76, 0.12) 0px 1px 3px 0px;
+  --shadow-subtle: rgba(255, 255, 255, 0.53) 0px 1px 0px 0px;
+  --shadow-sm: rgba(32, 41, 76, 0.1) 0px 1px 4px 0px;
+
+  --font: var(--font-gt-walsheim-pro);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas-white);
+  color: var(--color-midnight-ink);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  font-weight: var(--font-weight-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.fold-link {
+  color: var(--color-active-blue);
+  font-weight: var(--font-weight-semibold);
+}
+
+a.fold-link:hover {
+  text-decoration: underline;
+}
+
+/* Typography utilities */
+.fold-display {
+  font-family: var(--font-gt-walsheim-pro);
+  font-size: clamp(2.75rem, 8vw, var(--text-heading-lg));
+  line-height: var(--leading-heading-lg);
+  letter-spacing: var(--tracking-heading-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-midnight-ink);
+}
+
+.fold-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-body);
+  color: var(--color-muted-slate);
+  font-weight: var(--font-weight-regular);
+}
+
+.fold-hero-title {
+  font-size: clamp(3.3rem, 10vw, var(--text-display));
+  line-height: var(--leading-display);
+  letter-spacing: -0.125px;
+  text-wrap: balance;
+}
+
+.fold-hero-copy {
+  font-size: clamp(1.15rem, 2.2vw, 2.625rem);
+  line-height: 1.3;
+  letter-spacing: -0.03px;
+  color: var(--color-midnight-ink);
+  max-width: 64rem;
+}
+
+.fold-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-caption);
+  letter-spacing: var(--tracking-caption);
+  color: var(--color-soft-stone);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+/* Surfaces */
+.fold-paper {
+  background-color: var(--color-canvas-white);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+.fold-grid-bg {
+  background-color: var(--color-canvas-white);
+  background-image: linear-gradient(rgba(55, 83, 144, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 83, 144, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Pill button — Fold spec */
+.fold-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--element-gap);
+  padding: 8px 12px;
+  border-radius: var(--radius-buttons);
+  background: var(--color-whisper-gray);
+  color: var(--color-midnight-ink);
+  border: 1px solid var(--color-pale-violet-border);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body-sm);
+  letter-spacing: var(--tracking-body-sm);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-sm);
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.fold-pill:hover {
+  background: var(--color-canvas-white);
+  box-shadow: var(--shadow-md-2);
+}
+
+.fold-pill--subtle {
+  background: #fafafa;
+  border-color: rgba(120, 141, 186, 0.5);
+}
+
+/* Primary CTA */
+.fold-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: var(--radius-buttons);
+  background: var(--color-active-blue);
+  color: var(--color-canvas-white);
+  border: 1px solid var(--color-deep-violet);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-sm);
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.fold-btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+/* Cards */
+.fold-card {
+  background: var(--color-canvas-white);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-xl);
+  padding: var(--card-padding);
+}
+
+.fold-card--blank {
+  border-radius: var(--radius-3xl);
+  padding: 0;
+  overflow: hidden;
+}
+
+.fold-card--whisper {
+  background: var(--color-whisper-gray);
+  border-radius: var(--radius-2xl-2);
+  box-shadow: none;
+}
+
+/* Section spacing */
+.fold-section {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+.fold-container {
+  width: 100%;
+  max-width: 1126px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-16);
+  padding-right: var(--spacing-16);
+}
+
+/* Hero */
+.fold-hero {
+  min-height: 100svh;
+}
+
+.fold-hero-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(900px, 100%);
+  height: 280px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 0%,
+    rgba(221, 223, 233, 0.9) 0%,
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.fold-hero-gemini-wrap {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 11rem;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.fold-hero-gemini-label {
+  font-size: 0.78rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.fold-hero-gemini-mark {
+  width: auto;
+  height: 3.5rem;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .fold-hero-title {
+    letter-spacing: -0.2px;
+  }
+
+  .fold-hero-copy {
+    line-height: 1.25;
+  }
+
+  .fold-hero-gemini-wrap {
+    bottom: 0.75rem;
+    width: 12rem;
+  }
+
+  .fold-hero-gemini-label {
+    font-size: 0.86rem;
+  }
+
+  .fold-hero-gemini-mark {
+    height: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fold-hero-copy {
+    line-height: 1.2;
+  }
+
+  .fold-hero-gemini-wrap {
+    bottom: 1rem;
+    width: 13rem;
+  }
+
+  .fold-hero-gemini-mark {
+    height: 4.4rem;
+  }
+}
+
+.fold-hero-scroll-zone {
+  min-height: 140vh;
+}
+
+.fold-hero-stage {
+  position: sticky;
+  top: 76px;
+  min-height: 42vh;
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16) 0;
+}
+
+.fold-hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.fold-hero-phone {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+}
+
+.fold-hero-dashboard {
+  z-index: 20;
+}
+
+/* Swipe to pay — bank card */
+.fold-swipe-card {
+  background: var(--color-canvas-white);
+  border-radius: 22px;
+  padding: 16px 18px 20px;
+  box-shadow:
+    var(--shadow-xl),
+    0 0 0 1px rgba(55, 83, 144, 0.06);
+  transform: rotate(-2deg);
+}
+
+.fold-swipe-track {
+  position: relative;
+  height: 56px;
+  border-radius: 9999px;
+  background: #c8ebc8;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(42, 107, 50, 0.08);
+}
+
+.fold-swipe-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #9ed49e 0%, #b5e6b5 100%);
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
+.fold-swipe-label {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px 0 56px;
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: #2a6b32;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+.fold-swipe-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-canvas-white);
+  box-shadow:
+    0 3px 10px rgba(42, 107, 50, 0.18),
+    0 0 0 1px rgba(42, 107, 50, 0.1);
+  cursor: grab;
+  touch-action: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.fold-swipe-thumb:active {
+  cursor: grabbing;
+}
+
+.fold-swipe-thumb:disabled {
+  cursor: default;
+  background: var(--color-active-blue);
+}
+
+.fold-swipe-thumb-logo-wrap,
+.fold-swipe-bank-logo-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f4faf4;
+}
+
+.fold-swipe-sbi-logo,
+.fold-swipe-bank-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.fold-swipe-bank-logo-wrap {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.fold-swipe-thumb-check {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
+}
+
+.fold-swipe-card-body {
+  padding-top: 18px;
+}
+
+.fold-swipe-bank-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fold-swipe-bank-name {
+  margin: 0;
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-midnight-ink);
+}
+
+.fold-swipe-account-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.fold-swipe-account-label {
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-soft-stone);
+}
+
+.fold-swipe-account-value {
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-soft-stone);
+  font-variant-numeric: tabular-nums;
+}
+
+.fold-dashboard-preview {
+  cursor: zoom-in;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.fold-dashboard-preview:hover {
+  transform: translateY(-2px);
+}
+
+.fold-dashboard-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: #0b1020;
+  animation: fold-dashboard-enter 0.28s ease;
+}
+
+@keyframes fold-dashboard-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fold-dashboard-modal-toolbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 16px;
+  pointer-events: none;
+}
+
+.fold-dashboard-modal-toolbar .fold-dashboard-close {
+  pointer-events: auto;
+}
+
+.fold-dashboard-modal-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  background: #0b1020;
+}
+
+.fold-dashboard-modal-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.fold-dashboard-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  background: rgba(14, 20, 40, 0.72);
+  color: #fff;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  padding: 10px 16px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s ease;
+}
+
+.fold-dashboard-close:hover {
+  background: rgba(14, 20, 40, 0.9);
+}
+
+.fold-dashboard-close-icon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+/* Bento footer */
+.fold-bento-grid {
+  display: grid;
+  gap: var(--spacing-16);
+  grid-template-columns: 1fr;
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .fold-bento-grid {
+    grid-template-columns: 1.08fr 0.72fr 1.08fr;
+    grid-template-rows: auto auto;
+    align-items: stretch;
+  }
+
+  .fold-bento-card--leftTop {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .fold-bento-card--leftBottom {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .fold-bento-card--privacy {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .fold-bento-card--links {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .fold-bento-card--meta {
+    grid-column: 3;
+    grid-row: 2;
+  }
+}
+
+.fold-bento-card {
+  background: var(--color-whisper-gray);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-md-2);
+  border: 1px solid rgba(55, 83, 144, 0.06);
+}
+
+/* Media cards sized by photo ratios */
+.fold-bento-card--media {
+  aspect-ratio: 1 / 1;
+}
+
+/* bento footer card sizing */
+.fold-bento-card--meta {
+  min-height: 150px;
+}
+
+@media (min-width: 768px) {
+  .fold-bento-card--links {
+    min-height: 260px;
+  }
+
+  .fold-bento-card--meta {
+    min-height: 180px;
+  }
+}
+
+.fold-bento-card--privacy {
+  position: relative;
+  background: var(--color-whisper-gray);
+  overflow: hidden;
+  min-height: 180px;
+}
+
+@media (min-width: 768px) {
+  .fold-bento-card--privacy {
+    min-height: 260px;
+  }
+}
+
+.fold-bento-coin-slot {
+  display: grid;
+  place-items: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.fold-bento-coin {
+  display: block;
+  width: min(72px, 40%);
+  height: auto;
+  filter: drop-shadow(0 14px 28px rgba(32, 41, 76, 0.16));
+  animation: fold-coin-float 4s ease-in-out infinite;
+}
+
+.fold-bento-privacy-footer {
+  margin-top: auto;
+  padding-top: var(--spacing-8);
+}
+
+@keyframes fold-coin-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fold-bento-coin {
+    animation: none;
+  }
+}
+
+.fold-bento-meta-photo {
+  aspect-ratio: 1394 / 1152;
+  background: var(--color-whisper-gray);
+}
+
+.fold-bento-meta-body {
+  background: var(--color-whisper-gray);
+}

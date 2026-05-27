@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 28" fill="none" aria-hidden="true">
+  <circle cx="14" cy="14" r="13" fill="#20294c"/>
+  <path d="M14 4v20M7 14h14" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <text x="34" y="20" font-family="system-ui, sans-serif" font-size="18" font-weight="700" fill="#20294c">nyx</text>
+</svg>
