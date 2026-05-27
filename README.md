@@ -48,11 +48,11 @@ Open `http://localhost:5173`.
 
 ### Landing View
 
-![Nyx landing screenshot](../website%20photo.png)
+![Nyx dashboard preview](./src/assets/nyx/dashboard.png)
 
 ### Alternative Landing View
 
-![Nyx landing screenshot 2](../webiste%20photo%202.png)
+![Nyx phone preview](./src/assets/nyx/phone-with-full-view.png)
 
 ## Build Status
 
@@ -64,4 +64,4 @@ The project is set up to pass:
 ## Notes
 
 - Image assets used in UI are stored in `src/assets/nyx`.
-- Extra reference screenshots for README are stored in the workspace root.
+- README screenshots must use paths inside this repository to render on GitHub.
